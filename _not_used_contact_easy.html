@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartValle - Experience luxury and tranquility at our smart villa in Kandy, Sri Lanka. Enjoy breathtaking views, smart home features, and adventure activities.">
+    <meta name="keywords" content="SmartValle, luxury villa, Kandy, Sri Lanka, smart home, honeymoon, adventure activities, hiking, surfing, tourism">
+    <meta name="author" content="SmartValle">
+    <meta property="og:title" content="SmartValle - Luxury Smart Villa in Kandy, Sri Lanka">
+    <meta property="og:description" content="Discover the unique blend of luxury and serenity at SmartValle, offering smart amenities, scenic views, and adventure activities in Kandy, Sri Lanka.">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:url" content="https://smartvalle.com/">
+    <meta property="og:type" content="website">
+    <title>Communication QR Codes | SmartValle</title>
+    
+     
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            flex-direction: column;
+        }
+        h1 {
+            color: #333;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #000;
+        }
+        .logo {
+            max-width: 300px;
+            margin-bottom: 15px;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #fff;
+            color: #000;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        select:hover, select:focus {
+            background-color: #f9f9f9;
+            outline: none;
+        }
+        .qr-info {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        canvas {
+            margin: 10px auto;
+            display: block;
+        }
+        .qr-description {
+            font-size: 16px;
+            color: #000;
+            margin-top: 10px;
+        }
+        #qrcode {
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            border: 1px solid #000;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+    <!-- Include QRCode.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Logo image -->
+        <img src="img/logo.png" alt="SmartValle Logo" class="logo">
+
+        <h1>Contact Us</h1>
+        <select id="channelSelect">
+            <option value="">Select Communication App</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="line">Line</option>
+            <option value="wechat">WeChat</option>
+            <option value="telegram">Telegram</option>
+        </select>
+
+        <div id="qrContainer" class="qr-info">
+            <div id="qrcode"></div>
+            <p class="qr-description" id="qrDescription"></p>
+            <a id="qrLink" href="#" target="_blank">Click here to open in app</a>
+        </div>
+    </div>
+
+    <footer>
+        28, Mountain Range, Pahala Wariyagala, Nillambe, Kandy, Sri Lanka <br>
+        +94760748551 / +94763972647 / +94718812629
+    </footer>
+
+    <script>
+        const channelSelect = document.getElementById('channelSelect');
+        const qrContainer = document.getElementById('qrContainer');
+        const qrDescription = document.getElementById('qrDescription');
+        const qrCodeDiv = document.getElementById('qrcode');
+        const qrLink = document.getElementById('qrLink');
+
+        const qrData = {
+            whatsapp: {
+                value: 'https://wa.me/+94760748551',
+                description: 'Scan this QR code to open WhatsApp.',
+                linkText: 'wa.me/+94760748551'
+            },
+            line: {
+                value: 'https://line.me/ti/p/XJB_SGL8aK',
+                description: 'Scan this QR code to open Line.',
+                linkText: 'line.me/ti/p/XJB_SGL8aK'
+            },
+            wechat: {
+                value: 'weixin://dl/chat?smartvalle',
+                description: 'Scan this QR code to open WeChat.',
+                linkText: 'weixin://dl/chat?smartvalle'
+            },
+            telegram: {
+                value: 'https://t.me/smartvalee',
+                description: 'Scan this QR code to open Telegram.',
+                linkText: 't.me/smartvalee'
+            }
+        };
+
+        channelSelect.addEventListener('change', function() {
+            const selectedChannel = channelSelect.value;
+
+            if (selectedChannel && qrData[selectedChannel]) {
+                qrCodeDiv.innerHTML = ''; // Clear the previous QR code
+                new QRCode(qrCodeDiv, {
+                    text: qrData[selectedChannel].value,
+                    width: 180,
+                    height: 180
+                });
+                qrDescription.textContent = qrData[selectedChannel].description;
+                qrLink.href = qrData[selectedChannel].value;
+                qrLink.textContent = 'Click here to open in ' + selectedChannel.charAt(0).toUpperCase() + selectedChannel.slice(1);
+                qrContainer.style.display = 'block';
+            } else {
+                qrContainer.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
